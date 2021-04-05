@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 public interface startnewview {
 
-    void startview1();
+    void startview1() throws InterruptedException;
 
 
 }
