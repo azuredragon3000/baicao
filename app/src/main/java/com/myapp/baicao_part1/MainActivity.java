@@ -12,10 +12,11 @@ import android.view.Display;
 public class MainActivity extends Activity implements startnewview,Runnable{
 
     private myBitmapPoker[] arrPoker;
-    private Bitmap space1,space2,button;
+    private Bitmap space1,space2,button,buttonchien,chat;
     private Point size;
     private Thread thread;
     private boolean ready;
+    ViewStartGame startview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +30,20 @@ public class MainActivity extends Activity implements startnewview,Runnable{
         button = getBitmap("button", size);
         space2 = getBitmap("bg2", size);
 
+        buttonchien = getBitmap("buttonchien",size);
+        chat = getBitmap("chat2",size);
         arrPoker = new myBitmapPoker[52];
 
-        ViewStartGame startview = new ViewStartGame(this,space1,button,size,this);
+        startview = new ViewStartGame(this,space1,button,size,this);
         setContentView(startview);
         thread.start();
     }
 
+
+    @Override
+    public void startview0()  {
+        setContentView(startview);
+    }
 
 
     public Bitmap getBitmap(String image, Point size) {
@@ -59,7 +67,7 @@ public class MainActivity extends Activity implements startnewview,Runnable{
     public void startview1() throws InterruptedException {
         if(ready) {
             thread.join();
-            ViewGame startview = new ViewGame(this, space2, arrPoker, size, this);
+            ViewGame startview = new ViewGame(this, space2, arrPoker, size, this,buttonchien,chat);
             setContentView(startview);
             startview.startView();
         }else{
@@ -129,58 +137,69 @@ public class MainActivity extends Activity implements startnewview,Runnable{
 
 
 
-        t_arrPoker[0] = new myBitmapPoker(temp,haibit);
-        t_arrPoker[1] = new myBitmapPoker(temp,haichuon);
-        t_arrPoker[2] = new myBitmapPoker(temp,hairo);
-        t_arrPoker[3] = new myBitmapPoker(temp,haico);
-        t_arrPoker[4] = new myBitmapPoker(temp,babit);
-        t_arrPoker[5] = new myBitmapPoker(temp,bachuon);
-        t_arrPoker[6] = new myBitmapPoker(temp,baro);
-        t_arrPoker[7] = new myBitmapPoker(temp,baco);
-        t_arrPoker[8] = new myBitmapPoker(temp,bonbit);
-        t_arrPoker[9] = new myBitmapPoker(temp,bonchuon);
-        t_arrPoker[10] = new myBitmapPoker(temp,bonro);
-        t_arrPoker[11] = new myBitmapPoker(temp,bonco);
-        t_arrPoker[12] = new myBitmapPoker(temp,nambit);
-        t_arrPoker[13] = new myBitmapPoker(temp,namchuon);
-        t_arrPoker[14] = new myBitmapPoker(temp,namro);
-        t_arrPoker[15] = new myBitmapPoker(temp,namco);
-        t_arrPoker[16] = new myBitmapPoker(temp,saubit);
-        t_arrPoker[17] = new myBitmapPoker(temp,sauchuon);
-        t_arrPoker[18] = new myBitmapPoker(temp,sauro);
-        t_arrPoker[19] = new myBitmapPoker(temp,sauco);
-        t_arrPoker[20] = new myBitmapPoker(temp,baybit);
-        t_arrPoker[21] = new myBitmapPoker(temp,baychuon);
-        t_arrPoker[22] = new myBitmapPoker(temp,bayro);
-        t_arrPoker[23] = new myBitmapPoker(temp,bayco);
-        t_arrPoker[24] = new myBitmapPoker(temp,tambit);
-        t_arrPoker[25] = new myBitmapPoker(temp,tamchuon);
-        t_arrPoker[26] = new myBitmapPoker(temp,tamro);
-        t_arrPoker[27] = new myBitmapPoker(temp,tamco);
-        t_arrPoker[28] = new myBitmapPoker(temp,chinbit);
-        t_arrPoker[29] = new myBitmapPoker(temp,chinchuon);
-        t_arrPoker[30] = new myBitmapPoker(temp,chinro);
-        t_arrPoker[31] = new myBitmapPoker(temp,chinco);
-        t_arrPoker[32] = new myBitmapPoker(temp,muoibit);
-        t_arrPoker[33] = new myBitmapPoker(temp,muoichuon);
-        t_arrPoker[34] = new myBitmapPoker(temp,muoiro);
-        t_arrPoker[35] = new myBitmapPoker(temp,muoico);
-        t_arrPoker[36] = new myBitmapPoker(temp,jbit);
-        t_arrPoker[37] = new myBitmapPoker(temp,jchuon);
-        t_arrPoker[38] = new myBitmapPoker(temp,jro);
-        t_arrPoker[39] = new myBitmapPoker(temp,jco);
-        t_arrPoker[40] = new myBitmapPoker(temp,dambit);
-        t_arrPoker[41] = new myBitmapPoker(temp,damchuon);
-        t_arrPoker[42] = new myBitmapPoker(temp,damro);
-        t_arrPoker[43] = new myBitmapPoker(temp,damco);
-        t_arrPoker[44] = new myBitmapPoker(temp,giabit);
-        t_arrPoker[45] = new myBitmapPoker(temp,giachuon);
-        t_arrPoker[46] = new myBitmapPoker(temp,giaro);
-        t_arrPoker[47] = new myBitmapPoker(temp,giaco);
-        t_arrPoker[48] = new myBitmapPoker(temp,xibit);
-        t_arrPoker[49] = new myBitmapPoker(temp,xichuon);
-        t_arrPoker[50] = new myBitmapPoker(temp,xiro);
-        t_arrPoker[51] = new myBitmapPoker(temp,xico);
+        t_arrPoker[0] = new myBitmapPoker(temp,haibit,2);
+        t_arrPoker[1] = new myBitmapPoker(temp,haichuon,2);
+        t_arrPoker[2] = new myBitmapPoker(temp,hairo,2);
+        t_arrPoker[3] = new myBitmapPoker(temp,haico,2);
+
+        t_arrPoker[4] = new myBitmapPoker(temp,babit,3);
+        t_arrPoker[5] = new myBitmapPoker(temp,bachuon,3);
+        t_arrPoker[6] = new myBitmapPoker(temp,baro,3);
+        t_arrPoker[7] = new myBitmapPoker(temp,baco,3);
+
+        t_arrPoker[8] = new myBitmapPoker(temp,bonbit,4);
+        t_arrPoker[9] = new myBitmapPoker(temp,bonchuon,4);
+        t_arrPoker[10] = new myBitmapPoker(temp,bonro,4);
+        t_arrPoker[11] = new myBitmapPoker(temp,bonco,4);
+
+        t_arrPoker[12] = new myBitmapPoker(temp,nambit,5);
+        t_arrPoker[13] = new myBitmapPoker(temp,namchuon,5);
+        t_arrPoker[14] = new myBitmapPoker(temp,namro,5);
+        t_arrPoker[15] = new myBitmapPoker(temp,namco,5);
+
+        t_arrPoker[16] = new myBitmapPoker(temp,saubit,6);
+        t_arrPoker[17] = new myBitmapPoker(temp,sauchuon,6);
+        t_arrPoker[18] = new myBitmapPoker(temp,sauro,6);
+        t_arrPoker[19] = new myBitmapPoker(temp,sauco,6);
+
+        t_arrPoker[20] = new myBitmapPoker(temp,baybit,7);
+        t_arrPoker[21] = new myBitmapPoker(temp,baychuon,7);
+        t_arrPoker[22] = new myBitmapPoker(temp,bayro,7);
+        t_arrPoker[23] = new myBitmapPoker(temp,bayco,7);
+
+        t_arrPoker[24] = new myBitmapPoker(temp,tambit,8);
+        t_arrPoker[25] = new myBitmapPoker(temp,tamchuon,8);
+        t_arrPoker[26] = new myBitmapPoker(temp,tamro,8);
+        t_arrPoker[27] = new myBitmapPoker(temp,tamco,8);
+
+        t_arrPoker[28] = new myBitmapPoker(temp,chinbit,9);
+        t_arrPoker[29] = new myBitmapPoker(temp,chinchuon,9);
+        t_arrPoker[30] = new myBitmapPoker(temp,chinro,9);
+        t_arrPoker[31] = new myBitmapPoker(temp,chinco,9);
+
+        t_arrPoker[32] = new myBitmapPoker(temp,muoibit,10);
+        t_arrPoker[33] = new myBitmapPoker(temp,muoichuon,10);
+        t_arrPoker[34] = new myBitmapPoker(temp,muoiro,10);
+        t_arrPoker[35] = new myBitmapPoker(temp,muoico,10);
+
+        t_arrPoker[36] = new myBitmapPoker(temp,jbit,10);
+        t_arrPoker[37] = new myBitmapPoker(temp,jchuon,10);
+        t_arrPoker[38] = new myBitmapPoker(temp,jro,10);
+        t_arrPoker[39] = new myBitmapPoker(temp,jco,10);
+
+        t_arrPoker[40] = new myBitmapPoker(temp,dambit,10);
+        t_arrPoker[41] = new myBitmapPoker(temp,damchuon,10);
+        t_arrPoker[42] = new myBitmapPoker(temp,damro,10);
+        t_arrPoker[43] = new myBitmapPoker(temp,damco,10);
+
+        t_arrPoker[44] = new myBitmapPoker(temp,giabit,10);
+        t_arrPoker[45] = new myBitmapPoker(temp,giachuon,10);
+        t_arrPoker[46] = new myBitmapPoker(temp,giaro,10);
+        t_arrPoker[47] = new myBitmapPoker(temp,giaco,10);
+        t_arrPoker[48] = new myBitmapPoker(temp,xibit,10);
+        t_arrPoker[49] = new myBitmapPoker(temp,xichuon,10);
+        t_arrPoker[50] = new myBitmapPoker(temp,xiro,10);
+        t_arrPoker[51] = new myBitmapPoker(temp,xico,10);
 
 
         return t_arrPoker;
@@ -192,8 +211,10 @@ public class MainActivity extends Activity implements startnewview,Runnable{
 class myBitmapPoker{
     Bitmap bitmap_back;
     Bitmap bitmap_front;
-    myBitmapPoker(Bitmap b1, Bitmap b2){
+    int number;
+    myBitmapPoker(Bitmap b1, Bitmap b2, int num){
         bitmap_back = b1;
         bitmap_front = b2;
+        number = num;
     }
 }

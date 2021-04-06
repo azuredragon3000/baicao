@@ -16,18 +16,18 @@ public class TextDrawable extends Drawable {
         private final Paint paint;
         private Rect rect;
         private final Paint paint2;
-        public TextDrawable(String text, Rect rect) {
+        public TextDrawable(String text, Rect rect, float textsize, Paint.Style pain) {
 
             this.text = text;
             this.rect = rect;
             this.paint = new Paint();
             paint.setColor(Color.rgb(51, 57, 255));
             paint.setTypeface(Typeface.create("Arial", Typeface.ITALIC));
-            paint.setTextSize(50f);
+            paint.setTextSize(textsize);
             paint.setAntiAlias(true);
             paint.setFakeBoldText(true);
             paint.setShadowLayer(6f, 0, 0, Color.BLACK);
-            paint.setStyle(Paint.Style.STROKE);
+            paint.setStyle(pain);
             paint.setTextAlign(Paint.Align.LEFT);
             paint2 = new Paint();
             paint2.setColor(Color.rgb(51, 255, 63));

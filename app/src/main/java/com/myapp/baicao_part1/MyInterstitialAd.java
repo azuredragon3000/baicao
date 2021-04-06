@@ -32,7 +32,7 @@ public class MyInterstitialAd {
         }
     }
     MyInterstitialAd(String device, String id_ads, Context context){
-        List<String> testDeviceIds = Arrays.asList("07CC7E40850ABA2DF210A2D2564CAD76");
+        List<String> testDeviceIds = Arrays.asList(device);
         RequestConfiguration configuration =
                 new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
         MobileAds.setRequestConfiguration(configuration);
@@ -49,7 +49,7 @@ public class MyInterstitialAd {
 
         InterstitialAd.load(
                 context,
-                "ca-app-pub-8404443559572571/3715462075",
+                id_ads,
                 new AdRequest.Builder().build(),
                 new InterstitialAdLoadCallback() {
                     @Override

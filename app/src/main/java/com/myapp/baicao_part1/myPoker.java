@@ -15,11 +15,12 @@ public class myPoker {
     float l,t;
     private float hesogoc,hesogocy;
     private boolean tren;
-    public Rect vitri;
-    public Bitmap bitmap2;
-
-    myPoker(Context context, Bitmap bitmap, Point size, Bitmap bitmap2){
+    public Rect vitri,vitribandau;
+    public Bitmap bitmap2,bitmap1;
+    public int number;
+    myPoker(Context context, Bitmap bitmap, Point size, Bitmap bitmap2, int number){
             this.bitmap = bitmap;
+            this.bitmap1 = bitmap;
             this.size = size;
             this.bitmap2 = bitmap2;
             hesogoc = 2/6;
@@ -27,18 +28,21 @@ public class myPoker {
             animationy = 0;
             l = (size.x)/8;
             t = (size.y*3)/8;
+            this.number = number;
             tren = true;
         vitri = new Rect((int)l,(int)t,(int)l+bitmap.getWidth(),(int)t+bitmap.getHeight());
-
+        vitribandau = new Rect((int)l,(int)t,(int)l+bitmap.getWidth(),(int)t+bitmap.getHeight());
     }
 
+    void getvitribandau(){
+        vitri.set(vitribandau);
+    }
     void draw(Canvas canvas, Paint paint) {
         if(tren) {
             canvas.drawBitmap(bitmap, l + animationx, t - animationy, null);
         }else{
             canvas.drawBitmap(bitmap, l + animationx, t + animationy, null);
-        }//canvas.drawText(animationx + " : " +animationy , 300,300,paint);
-       // canvas.drawText("vi tri card1: "+ getvitri(),200,200,paint);
+        }
     }
 
     public void move(int hesoa, int hesob, int hesoc, boolean tren) {
@@ -65,5 +69,11 @@ public class myPoker {
 
     public String getvitri() {
         return vitri.left + " : "+ vitri.top;
+    }
+
+    public void latbai(boolean lat) {
+        if(lat){
+            bitmap = bitmap2;
+        }
     }
 }

@@ -23,10 +23,10 @@ public class ViewStartGame extends View {
         Drawable button = new BitmapDrawable(context.getResources(), buttonBitmap);
         this.startview = startview;
         space.setBounds(0,0,size.x,size.y);
-        int l = (size.x*2)/8;
-        int t = (size.y*6)/8;
-        int r = (size.x*4)/8;
-        int b = (size.y*8)/8;
+        int l = (size.x*3)/8;
+        int t = (size.y*6)/8-size.y/15;
+        int r = (size.x*5)/8;
+        int b = (size.y*8)/8+size.y/15;
 
         rect = new Rect(l,t,r,b);
         button.setBounds(rect);
